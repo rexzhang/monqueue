@@ -5,8 +5,11 @@
 import pymongo
 
 
-QUEUE_LABLE_NAME = 'queue'
-QUEUE_LABLE_MSG = 'msg'
+__version__ = "0.1"
+
+
+QUEUE_LABLE_NAME = 'q'
+QUEUE_LABLE_MSG = 'm'
 
 
 ########################################################################
@@ -73,7 +76,9 @@ class MonQueue(object):
 
     #----------------------------------------------------------------------
     def peek(self):
-        """peek oldest message info"""
+        """peek oldest message info
+        just peek, no pop
+        """
         timestamp = None
 
         msg = self.__coll.find_one(query=self.__query, sort=[('_id', pymongo.ASCENDING)])
