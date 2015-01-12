@@ -1,70 +1,157 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Monqueue : MonQueue is a Python library that allows you to use MongoDB as a message queue">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Monqueue</title>
-  </head>
-
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/rexzhang/monqueue">View on GitHub</a>
-
-          <h1 id="project_title">Monqueue</h1>
-          <h2 id="project_tagline">MonQueue is a Python library that allows you to use MongoDB as a message queue</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/rexzhang/monqueue/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/rexzhang/monqueue/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1></h1>
-
-<h1>
-<a id="monqueue" class="anchor" href="#monqueue" aria-hidden="true"><span class="octicon octicon-link"></span></a>MonQueue</h1>
-
-<p>:Info: MonQueue is a Python library that allows you to use MongoDB as a message queue.
-:Author: Rex Zhang (<a href="http://github.com/rexzhang">http://github.com/rexzhang</a>)</p>
-
-<h1>
-<a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h1>
-
-<p>To install it, just run:</p>
-
-<p>.. code-block:: console</p>
-
-<pre><code>pip install -U monqueue
-</code></pre>
-
-<h1>
-<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h1>
-
-<p>The source is available on <code>GitHub &lt;http://github.com/rexzhang/monqueue&gt;</code>_. To contribute to the project, fork it on GitHub and send a pull request, all contributions and suggestions are welcome.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Monqueue maintained by <a href="https://github.com/rexzhang">rexzhang</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
+    <title>MonQueue &mdash; MonQueue 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="MonQueue 0.1 documentation" href="#" />
+   
+  
+  <link media="only screen and (max-device-width: 480px)" href="_static/small_flask.css" type= "text/css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="#">MonQueue 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="monqueue">
+<h1>MonQueue<a class="headerlink" href="#monqueue" title="Permalink to this headline">¶</a></h1>
+<p>MonQueue is a Python library that allows you to use MongoDB as a (FIFO)message queue. Using MonQueue looks a little bit like this…</p>
+<p>Create a queue:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">monqueue</span> <span class="kn">import</span> <span class="n">MonQueue</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">queue</span> <span class="o">=</span> <span class="n">MonQueue</span><span class="p">(</span><span class="s">&#39;testqueue&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Put message into the queue:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">&#39;it is a message&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">({</span><span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;Rex Zhang&#39;</span><span class="p">,</span> <span class="s">&#39;city&#39;</span><span class="p">:</span> <span class="s">&#39;Chengdu&#39;</span><span class="p">,</span> <span class="s">&#39;country&#39;</span><span class="p">:</span> <span class="s">&#39;China&#39;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Take the queue&#8217;s size:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">queue</span><span class="o">.</span><span class="n">qsize</span><span class="p">()</span>
+<span class="go">3</span>
+</pre></div>
+</div>
+<p>Peek a message from the queue, just peek, no pop:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">queue</span><span class="o">.</span><span class="n">peek</span><span class="p">()</span>
+<span class="go">(u&#39;it is a message&#39;, datetime.datetime(2015, 1, 11, 7, 3, 57, tzinfo=&lt;bson.tz_util.FixedOffset object at 0x0000000002708630&gt;))</span>
+</pre></div>
+</div>
+<p>Get a message from the queue:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="go">u&#39;it is a message&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="go">{u&#39;city&#39;: u&#39;Chengdu&#39;, u&#39;name&#39;: u&#39;Rex Zhang&#39;, u&#39;country&#39;: u&#39;China&#39;}</span>
+</pre></div>
+</div>
+<p>Check the queue, return True if the queue empty:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">queue</span><span class="o">.</span><span class="n">qsize</span><span class="p">()</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">queue</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>Clear the queue:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">queue</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">queue</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>To install it, just run:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">pip install -U monqueue</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Python (tested on version 2.7.8)</li>
+<li><a class="reference external" href="http://www.mongodb.org/">MongoDB</a></li>
+<li><a class="reference external" href="https://pypi.python.org/pypi/pymongo/">pymongo</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">MonQueue</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#requirements">Requirements</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2015, Rex Zhang.
+    </div>
   </body>
 </html>
