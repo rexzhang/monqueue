@@ -3,13 +3,14 @@
 
 
 import pymongo
+import bson
 
 
 __version__ = "0.1"
 
 
 QUEUE_LABLE_NAME = 'q'
-QUEUE_LABLE_MSG = 'm'
+QUEUE_LABLE_QMSG = 'm'
 
 
 ########################################################################
@@ -17,7 +18,7 @@ class MonQueue(object):
     """MonQueue is a Python library that allows you to use MongoDB as a message queue"""
 
     #----------------------------------------------------------------------
-    def __init__(self, name, host='localhost', port=27017, db_name='queue', coll_name=None, multi_queue_in_one_coll=False):
+    def __init__(self, name, host='localhost', port=27017, db_name='monqueue', coll_name=None, multi_queue_in_one_coll=False):
         """Constructor
 
         supprt two mode:
@@ -55,11 +56,11 @@ class MonQueue(object):
         if self.__multi_queue_in_one_coll:
             self.__coll.insert({
                 QUEUE_LABLE_NAME: self.name,
-                QUEUE_LABLE_MSG: msg,
+                QUEUE_LABLE_QMSG: msg,
             })
         else:
             self.__coll.insert({
-                QUEUE_LABLE_MSG: msg,
+                QUEUE_LABLE_QMSG: msg,
             })
 
         return
@@ -75,19 +76,31 @@ class MonQueue(object):
         return msg
 
     #----------------------------------------------------------------------
-    def peek(self):
-        """peek oldest message info
-        just peek, no pop
+    def peek(self, timestamp=False, mongo_id_str=False):
+        """peek oldest message info. just peek, no pop
+
+        >>> q.put('queue msg')
+        >>> q.peek()
+        ('queue msg', {})
+        >>> q.peek(timestamp=True)
+        ('queue msg', {'timestamp': datetime.datetime(2015, 2, 4, 5, 58, 37, tzinfo=<bson.tz_util.FixedOffset object at 0x101389d90>)})
+        >>> q.peek(mongo_id_str=True)
+        ('queue msg', {'mongo_id_str': '54d1b50ddd7215c3b15ed992'})
         """
-        timestamp = None
+        ext_info = {}
 
-        msg = self.__coll.find_one(query=self.__query, sort=[('_id', pymongo.ASCENDING)])
+        _msg = self.__coll.find_one(query=self.__query, sort=[('_id', pymongo.ASCENDING)])
 
-        if msg != None:
-            timestamp = msg['_id'].generation_time
-            msg = msg[QUEUE_LABLE_MSG]
+        if _msg != None:
+            msg = _msg[QUEUE_LABLE_QMSG]
 
-        return msg, timestamp
+            if timestamp:
+                ext_info['timestamp'] = _msg['_id'].generation_time
+
+            if mongo_id_str:
+                ext_info['mongo_id_str'] = str(bson.objectid.ObjectId(_msg['_id'].binary))
+
+        return msg, ext_info
 
     #----------------------------------------------------------------------
     def qsize(self):
