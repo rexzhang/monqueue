@@ -4,6 +4,7 @@
 
 import pymongo
 import bson
+import time
 
 
 __version__ = "0.1"
@@ -35,7 +36,6 @@ class MonQueue(object):
         self.__db = pymongo.database.Database(self.__conn, db_name)
         self.__coll = pymongo.collection.Collection(self.__db, coll_name)
 
-
         if self.__multi_queue_in_one_coll:
             self.__query = {QUEUE_LABLE_NAME: self.name}
 
@@ -66,12 +66,40 @@ class MonQueue(object):
         return
 
     #----------------------------------------------------------------------
-    def get(self):
-        """get one message and remove it"""
-        msg = self.__coll.find_and_modify(query=self.__query, sort=[('_id', pymongo.ASCENDING)], remove=True)
+    def get(self, block=True, timeout=None):
+        """get one message and remove it
 
-        if msg != None:
-            msg = msg[QUEUE_LABLE_MSG]
+        :block: blocking mode
+        :timeout: depend block mode
+
+        TODO: raise Empty
+        """
+        #init default return value
+        msg = None
+
+        if not block:
+            doc = self.__coll.find_and_modify(query=self.__query, sort=[('_id', pymongo.ASCENDING)], remove=True)
+
+        elif timeout is None:
+            doc = None
+            while doc is None:
+                doc = self.__coll.find_and_modify(query=self.__query, sort=[('_id', pymongo.ASCENDING)], remove=True)
+
+        elif timeout < 0:
+            raise ValueError("'timeout' must be a non-negative number")
+
+        else:
+            stop_time = time.time() + timeout
+            while True:
+                doc = self.__coll.find_and_modify(query=self.__query, sort=[('_id', pymongo.ASCENDING)], remove=True)
+
+                if doc == None and stop_time > time.time():
+                    time.sleep(1)
+                else:
+                    break
+
+        if doc != None:
+            msg = doc[QUEUE_LABLE_QMSG]
 
         return msg
 
@@ -89,16 +117,16 @@ class MonQueue(object):
         """
         ext_info = {}
 
-        _msg = self.__coll.find_one(query=self.__query, sort=[('_id', pymongo.ASCENDING)])
+        doc = self.__coll.find_one(query=self.__query, sort=[('_id', pymongo.ASCENDING)])
 
-        if _msg != None:
-            msg = _msg[QUEUE_LABLE_QMSG]
+        if doc != None:
+            msg = doc[QUEUE_LABLE_QMSG]
 
             if timestamp:
-                ext_info['timestamp'] = _msg['_id'].generation_time
+                ext_info['timestamp'] = doc['_id'].generation_time
 
             if mongo_id_str:
-                ext_info['mongo_id_str'] = str(bson.objectid.ObjectId(_msg['_id'].binary))
+                ext_info['mongo_id_str'] = str(bson.objectid.ObjectId(doc['_id'].binary))
 
         return msg, ext_info
 
