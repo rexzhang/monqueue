@@ -20,7 +20,7 @@ class MonQueueTestCase(unittest.TestCase):
     #----------------------------------------------------------------------
     def setUp(self):
         """Create the queue instance before the test."""
-        self.queue = MonQueue('monqueue_test', port=9005)
+        self.queue = MonQueue('monqueue_test')
         self.queue.clear()
         return
 
@@ -84,7 +84,7 @@ class MonQueueTestCase_multi_queue_in_one_coll(MonQueueTestCase):
     #----------------------------------------------------------------------
     def setUp(self):
         """test multi_queue_in_one_coll mode"""
-        self.queue = MonQueue('monqueue_test', port=9005, multi_queue_in_one_coll=True)
+        self.queue = MonQueue('monqueue_test', multi_queue_in_one_coll=True)
         return
 
 
