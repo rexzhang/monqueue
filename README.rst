@@ -1,3 +1,6 @@
+.. image:: https://travis-ci.org/rexzhang/monqueue.svg?branch=master
+    :target: https://travis-ci.org/rexzhang/monqueue
+
 ========
 MonQueue
 ========
