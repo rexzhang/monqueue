@@ -2,7 +2,6 @@
 #coding=utf-8
 
 
-import os
 from os import path
 from setuptools import setup, find_packages
 
@@ -12,7 +11,7 @@ here = path.abspath(path.dirname(__file__))
 
 def get_long_description():
     # Get the long description from the relevant file
-    with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
+    with open(path.join(here, 'README.rst')) as f:
         long_description = f.read()
 
     return long_description
