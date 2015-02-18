@@ -112,7 +112,7 @@ class MonQueue(object):
     def peek(self, timestamp=False, mongo_id_str=False):
         """Peek oldest message info. just peek, no pop.
 
-        :rtype: dict object
+        :rtype: (message object, dict object)
 
         >>> q.put('queue msg')
         >>> q.peek()
