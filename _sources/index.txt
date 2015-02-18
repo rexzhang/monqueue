@@ -9,23 +9,23 @@ Create a queue:
     >>> from monqueue import MonQueue
     >>> queue = MonQueue('testqueue')
 
-Put message into the queue:
+Put one message into the queue:
 
     >>> queue.put('it is a message')
     >>> queue.put({'name': 'Rex Zhang', 'city': 'Chengdu', 'country': 'China'})
     >>> queue.put([1, 2, 3])
 
-Take the queue's size:
+Get the queue's size:
 
     >>> queue.qsize()
     3
 
-Peek a message from the queue, just peek, no pop:
+Peek oldest message info from the queue, just peek, no pop:
 
     >>> queue.peek()
     (u'it is a message', datetime.datetime(2015, 1, 11, 7, 3, 57, tzinfo=<bson.tz_util.FixedOffset object at 0x0000000002708630>))
 
-Get a message from the queue:
+Get one message from queue and remove it:
 
     >>> queue.get()
     u'it is a message'
@@ -54,6 +54,16 @@ To install it, just run:
 .. code-block:: console
 
     pip install -U monqueue
+
+
+Documentation
+=============
+
+.. toctree::
+    :maxdepth: 2
+
+    apireference
+    changelog
 
 
 Requirements
