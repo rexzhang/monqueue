@@ -1,0 +1,12 @@
+Changelog
+=========
+
+Version 0.2
+-----------
+- Add block mode for get() method.
+- Change peek() method's return, from multi-value to one dict object.
+- Change empty() method to property.
+
+Version 0.1
+-----------
+first release.

@@ -47,11 +47,11 @@ class MonQueue(object):
 
     #----------------------------------------------------------------------
     def put(self, msg):
-        """put one message to queue. Example:
+        """Put one message into queue. Example:
 
-        >>> queue.put("first message")
-        >>> queue.put("2nd message)
-
+        >>> queue.put('it is a message')
+        >>> queue.put({'name': 'Rex Zhang', 'city': 'Chengdu', 'country': 'China'})
+        >>> queue.put([1, 2, 3])
         """
         if self.__multi_queue_in_one_coll:
             self.__coll.insert({
@@ -67,12 +67,17 @@ class MonQueue(object):
 
     #----------------------------------------------------------------------
     def get(self, block=True, timeout=None):
-        """get one message and remove it
+        """Get one message from queue and remove it.
 
-        :block: blocking mode
-        :timeout: depend block mode
+        :param block: blocking mode
+        :param timeout: depend block mode
 
-        TODO: raise Empty
+        >>> queue.get()
+        u'it is a message'
+        >>> queue.get()
+        {u'city': u'Chengdu', u'name': u'Rex Zhang', u'country': u'China'}
+
+        :TODO: raise Empty
         """
         #init default return value
         msg = None
@@ -105,7 +110,9 @@ class MonQueue(object):
 
     #----------------------------------------------------------------------
     def peek(self, timestamp=False, mongo_id_str=False):
-        """peek oldest message info. just peek, no pop
+        """Peek oldest message info. just peek, no pop.
+
+        :rtype: dict object
 
         >>> q.put('queue msg')
         >>> q.peek()
@@ -132,7 +139,10 @@ class MonQueue(object):
 
     #----------------------------------------------------------------------
     def qsize(self):
-        """get queue' size"""
+        """Get the queue's size.
+
+        :rtype: int
+        """
         if self.__multi_queue_in_one_coll:
             size = self.__coll.find({QUEUE_LABLE_NAME: self.name}).count()
         else:
@@ -141,8 +151,12 @@ class MonQueue(object):
         return size
 
     #----------------------------------------------------------------------
+    @property
     def empty(self):
-        """return True, if queue is empty"""
+        """Check the queue, return True if the queue empty.
+
+        :rtype: True or False
+        """
         if self.qsize() == 0:
             return True
         else:
@@ -150,7 +164,7 @@ class MonQueue(object):
 
     #----------------------------------------------------------------------
     def clear(self):
-        """clear queue"""
+        """clear the queue"""
         self.__coll.remove(query=self.__query)
 
         return

@@ -76,7 +76,7 @@ class MonQueueTestCase(unittest.TestCase):
         self.queue.clear()
         self.assertEqual(self.queue.qsize(), 0)
 
-        self.assertEqual(self.queue.empty(), True)
+        self.assertEqual(self.queue.empty, True)
 
         return
 
