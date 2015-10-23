@@ -16,7 +16,7 @@ install:
 # command to run tests
 script: 
 #   nosetests
-    coverage run test.py
+    coverage run --source=monqueue.py,test.py test.py
 
 after_success:
      coveralls
