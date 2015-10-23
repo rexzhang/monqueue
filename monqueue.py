@@ -83,12 +83,12 @@ class MonQueue(object):
         msg = None
 
         if not block:
-            doc = self.__coll.find_and_modify(query=self.__query, sort=[('_id', pymongo.ASCENDING)], remove=True)
+            doc = self.__coll.find_one_and_delete(filter=self.__query, sort=[('_id', pymongo.ASCENDING)])
 
         elif timeout is None:
             doc = None
             while doc is None:
-                doc = self.__coll.find_and_modify(query=self.__query, sort=[('_id', pymongo.ASCENDING)], remove=True)
+                doc = self.__coll.find_one_and_delete(filter=self.__query, sort=[('_id', pymongo.ASCENDING)])
 
         elif timeout < 0:
             raise ValueError("'timeout' must be a non-negative number")
@@ -96,7 +96,7 @@ class MonQueue(object):
         else:
             stop_time = time.time() + timeout
             while True:
-                doc = self.__coll.find_and_modify(query=self.__query, sort=[('_id', pymongo.ASCENDING)], remove=True)
+                doc = self.__coll.find_one_and_delete(filter=self.__query, sort=[('_id', pymongo.ASCENDING)])
 
                 if doc == None and stop_time > time.time():
                     time.sleep(1)
@@ -124,7 +124,7 @@ class MonQueue(object):
         """
         ext_info = {}
 
-        doc = self.__coll.find_one(query=self.__query, sort=[('_id', pymongo.ASCENDING)])
+        doc = self.__coll.find_one(filter=self.__query, sort=[('_id', pymongo.ASCENDING)])
 
         if doc != None:
             msg = doc[QUEUE_LABLE_QMSG]
@@ -165,7 +165,7 @@ class MonQueue(object):
     #----------------------------------------------------------------------
     def clear(self):
         """clear the queue"""
-        self.__coll.remove(query=self.__query)
+        self.__coll.delete_many(filter=self.__query)
 
         return
 
