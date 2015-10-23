@@ -168,8 +168,3 @@ class MonQueue(object):
         self.__coll.delete_many(filter=self.__query)
 
         return
-
-
-
-if __name__ == "__main__":
-    pass
