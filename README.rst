@@ -1,5 +1,7 @@
 .. image:: https://travis-ci.org/rexzhang/monqueue.svg?branch=master
     :target: https://travis-ci.org/rexzhang/monqueue
+.. image:: https://coveralls.io/repos/rexzhang/monqueue/badge.svg?branch=master&service=github
+    :target: https://coveralls.io/github/rexzhang/monqueue?branch=master
 
 ========
 MonQueue
