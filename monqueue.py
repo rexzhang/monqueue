@@ -7,7 +7,7 @@ import bson
 import time
 
 
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 
 
 QUEUE_LABLE_NAME = 'q'
