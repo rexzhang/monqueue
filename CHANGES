@@ -1,6 +1,10 @@
 Changelog
 =========
 
+Version 0.3
+-----------
+- Update to be compatible with PyMongo 3.x's new api
+
 Version 0.2
 -----------
 - Add block mode for get() method.
