@@ -1,9 +1,9 @@
 language: python
 python:
-    - "2.6"
     - "2.7"
     - "3.4"
     - "3.5"
+    - "3.6"
 
 services:
     - mongodb
@@ -19,4 +19,4 @@ script:
     coverage run --source=monqueue.py,test.py test.py
 
 after_success:
-     coveralls
+    coveralls

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#coding=utf-8
+# coding=utf-8
 
 
 import pymongo
@@ -10,23 +10,23 @@ import time
 __version__ = "0.3.1"
 
 
-QUEUE_LABLE_NAME = 'q'
-QUEUE_LABLE_QMSG = 'm'
+QUEUE_LABEL_NAME = 'q'
+QUEUE_LABEL_QMSG = 'm'
 
 
-########################################################################
 class MonQueue(object):
     """MonQueue is a Python library that allows you to use MongoDB as a message queue"""
 
-    #----------------------------------------------------------------------
-    def __init__(self, name, host='localhost', port=27017, db_name='monqueue', coll_name=None, multi_queue_in_one_coll=False):
+    def __init__(
+            self, name, host='localhost', port=27017, db_name='monqueue', coll_name=None, multi_queue_in_one_coll=False
+    ):
         """Constructor
 
         supprt two mode:
             * one coll one queue
             * one coll multi queue
         """
-        if coll_name == None:
+        if coll_name is None:
             coll_name = name
 
         self.name = name
@@ -37,15 +37,14 @@ class MonQueue(object):
         self.__coll = pymongo.collection.Collection(self.__db, coll_name)
 
         if self.__multi_queue_in_one_coll:
-            self.__query = {QUEUE_LABLE_NAME: self.name}
+            self.__query = {QUEUE_LABEL_NAME: self.name}
 
-            self.__coll.ensure_index([(QUEUE_LABLE_NAME, 1), ('_id', 1)])
+            self.__coll.ensure_index([(QUEUE_LABEL_NAME, 1), ('_id', 1)])
         else:
             self.__query = {}
 
         return
 
-    #----------------------------------------------------------------------
     def put(self, msg):
         """Put one message into queue. Example:
 
@@ -55,17 +54,16 @@ class MonQueue(object):
         """
         if self.__multi_queue_in_one_coll:
             self.__coll.insert({
-                QUEUE_LABLE_NAME: self.name,
-                QUEUE_LABLE_QMSG: msg,
+                QUEUE_LABEL_NAME: self.name,
+                QUEUE_LABEL_QMSG: msg,
             })
         else:
             self.__coll.insert({
-                QUEUE_LABLE_QMSG: msg,
+                QUEUE_LABEL_QMSG: msg,
             })
 
         return
 
-    #----------------------------------------------------------------------
     def get(self, block=True, timeout=None):
         """Get one message from queue and remove it.
 
@@ -79,7 +77,7 @@ class MonQueue(object):
 
         :TODO: raise Empty
         """
-        #init default return value
+        # init default return value
         msg = None
 
         if not block:
@@ -98,17 +96,16 @@ class MonQueue(object):
             while True:
                 doc = self.__coll.find_one_and_delete(filter=self.__query, sort=[('_id', pymongo.ASCENDING)])
 
-                if doc == None and stop_time > time.time():
+                if doc is None and stop_time > time.time():
                     time.sleep(1)
                 else:
                     break
 
-        if doc != None:
-            msg = doc[QUEUE_LABLE_QMSG]
+        if doc is not None:
+            msg = doc[QUEUE_LABEL_QMSG]
 
         return msg
 
-    #----------------------------------------------------------------------
     def peek(self, timestamp=False, mongo_id_str=False):
         """Peek oldest message info. just peek, no pop.
 
@@ -126,8 +123,9 @@ class MonQueue(object):
 
         doc = self.__coll.find_one(filter=self.__query, sort=[('_id', pymongo.ASCENDING)])
 
-        if doc != None:
-            msg = doc[QUEUE_LABLE_QMSG]
+        msg = None
+        if doc is not None:
+            msg = doc[QUEUE_LABEL_QMSG]
 
             if timestamp:
                 ext_info['timestamp'] = doc['_id'].generation_time
@@ -137,20 +135,18 @@ class MonQueue(object):
 
         return msg, ext_info
 
-    #----------------------------------------------------------------------
     def qsize(self):
         """Get the queue's size.
 
         :rtype: int
         """
         if self.__multi_queue_in_one_coll:
-            size = self.__coll.find({QUEUE_LABLE_NAME: self.name}).count()
+            size = self.__coll.find({QUEUE_LABEL_NAME: self.name}).count()
         else:
             size = self.__coll.count()
 
         return size
 
-    #----------------------------------------------------------------------
     @property
     def empty(self):
         """Check the queue, return True if the queue empty.
@@ -162,7 +158,6 @@ class MonQueue(object):
         else:
             return False
 
-    #----------------------------------------------------------------------
     def clear(self):
         """clear the queue"""
         self.__coll.delete_many(filter=self.__query)
