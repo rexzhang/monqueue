@@ -3,11 +3,11 @@
 .. image:: https://img.shields.io/coveralls/rexzhang/monqueue.svg
     :target: https://coveralls.io/github/rexzhang/monqueue?branch=master
 .. image:: https://img.shields.io/pypi/v/monqueue.svg
-    :target: https://pypi.python.org/pypi/MonQueue
+    :target: https://pypi.org/project/MonQueue/
 .. image:: https://img.shields.io/pypi/pyversions/monqueue.svg
-    :target: https://pypi.python.org/pypi/MonQueue
+    :target: https://pypi.org/project/MonQueue/
 .. image:: https://img.shields.io/pypi/dm/monqueue.svg
-    :target: https://pypi.python.org/pypi/MonQueue
+    :target: https://pypi.org/project/MonQueue/
 
 ========
 MonQueue
