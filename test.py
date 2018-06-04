@@ -89,6 +89,16 @@ class MonQueueTestCase(unittest.TestCase):
 
         return
 
+    def test_fifo(self):
+        first = datetime.datetime.now().microsecond
+        second = first + 1
+        self.queue.put(first)
+        self.queue.put(second)
+
+        self.assertEqual(self.queue.get(), first)
+        self.assertEqual(self.queue.get(), second)
+        return
+
 
 class MonQueueTestCaseMultiQueueInOneColl(MonQueueTestCase):
     def setUp(self):
