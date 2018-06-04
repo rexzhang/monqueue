@@ -53,12 +53,12 @@ class MonQueue(object):
         >>> queue.put([1, 2, 3])
         """
         if self.__multi_queue_in_one_coll:
-            self.__coll.insert({
+            self.__coll.insert_one({
                 QUEUE_LABEL_NAME: self.name,
                 QUEUE_LABEL_QMSG: msg,
             })
         else:
-            self.__coll.insert({
+            self.__coll.insert_one({
                 QUEUE_LABEL_QMSG: msg,
             })
 
