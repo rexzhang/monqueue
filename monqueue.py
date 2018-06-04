@@ -39,7 +39,7 @@ class MonQueue(object):
         if self.__multi_queue_in_one_coll:
             self.__query = {QUEUE_LABEL_NAME: self.name}
 
-            self.__coll.ensure_index([(QUEUE_LABEL_NAME, 1), ('_id', 1)])
+            self.__coll.create_index([(QUEUE_LABEL_NAME, pymongo.ASCENDING), ('_id', pymongo.ASCENDING)])
         else:
             self.__query = {}
 
