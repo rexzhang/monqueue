@@ -11,12 +11,12 @@ services:
 # command to install dependencies
 install:
     - pip install -r requirements.txt
-    - pip install coveralls
+    - pip install pytest pytest-cov
 
 # command to run tests
 script:
 #   nosetests
-    coverage run --source=monqueue.py,test.py test.py
+    python -m pytest --cov=.
 
 after_success:
     coveralls
