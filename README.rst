@@ -23,6 +23,11 @@ To install it, just run:
 
     pip install -U monqueue
 
+Coverage Report
+===============
+.. code-block:: console
+    python -m pytest --cov=. --cov-report html
+
 Contributing
 ============
 The source is available on `GitHub <http://github.com/rexzhang/monqueue>`_. To contribute to the project, fork it on GitHub and send a pull request, all contributions and suggestions are welcome.

@@ -54,3 +54,5 @@ docs/_build/
 target/
 *.wpu
 vent*
+coverage_html_report
+.pytest_cache/v/cache

@@ -5,7 +5,7 @@
 import unittest
 import datetime
 
-from monqueue import MonQueue
+import monqueue
 
 
 multi_queue_in_one_coll = False
@@ -19,7 +19,7 @@ class MonQueueTestCase(unittest.TestCase):
 
     def setUp(self):
         """Create the queue instance before the test."""
-        self.queue = MonQueue('monqueue_test')
+        self.queue = monqueue.MonQueue('monqueue_test')
         self.queue.clear()
         return
 
@@ -103,7 +103,7 @@ class MonQueueTestCase(unittest.TestCase):
 class MonQueueTestCaseMultiQueueInOneColl(MonQueueTestCase):
     def setUp(self):
         """test multi_queue_in_one_coll mode"""
-        self.queue = MonQueue('monqueue_test', multi_queue_in_one_coll=True)
+        self.queue = monqueue.MonQueue('monqueue_test', multi_queue_in_one_coll=True)
         return
 
 
