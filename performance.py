@@ -1,8 +1,6 @@
 #!/usr/bin/env python
-#coding=utf-8
+# coding=utf-8
 
-
-from __future__ import print_function, unicode_literals, absolute_import
 
 import time
 import monqueue
@@ -17,31 +15,31 @@ MSG = {
 def monqueue_test(num):
     print('monqueue_test')
 
-    queue = monqueue.MonQueue('testqueue', port=27017)
+    queue = monqueue.MonQueue('testqueue')
 
     #
     st = time.time()
     tic = lambda: 'at seconds %s' % (time.time()-st)
-    for i in xrange(num):
+    for i in range(num):
         queue.put(MSG)
 
-    print('monqueue put %s times %s' % (num,tic()))
+    print('monqueue put %s times %s' % (num, tic()))
 
     #
     st = time.time()
     tic = lambda: 'at seconds %s' % (time.time()-st)
-    for i in xrange(num):
+    for i in range(num):
         queue.peek()
 
-    print('monqueue peek %s times %s' % (num,tic()))
+    print('monqueue peek %s times %s' % (num, tic()))
 
     #
     st = time.time()
     tic = lambda: 'at seconds %s' % (time.time()-st)
-    for i in xrange(num):
+    for i in range(num):
         queue.get()
 
-    print('monqueue get %s times %s' % (num,tic()))
+    print('monqueue get %s times %s' % (num, tic()))
 
 
 def hotqueue_test(num):
@@ -52,21 +50,20 @@ def hotqueue_test(num):
     st = time.time()
     tic = lambda: 'at seconds %s' % (time.time()-st)
 
-    for i in xrange(num):
+    for i in range(num):
         queue.put(MSG)
 
     ct = time.time() - st
 
-    print('hotqueue put %s times %s' % (num,tic()))
-
+    print('hotqueue put %s times %s' % (num, tic()))
 
     st = time.time()
     tic = lambda: 'at seconds %s' % (time.time()-st)
-    for i in xrange(num):
+    for i in range(num):
         queue.get()
 
     ct = time.time() - st
-    print('hotqueue get %s times %s' % (num,tic()))
+    print('hotqueue get %s times %s' % (num, tic()))
 
 
 if __name__ == '__main__':
