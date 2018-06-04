@@ -2,9 +2,9 @@
 # coding=utf-8
 
 
-import pymongo
-import bson
 import time
+
+import pymongo
 
 
 __version__ = "0.3.1"
@@ -22,7 +22,7 @@ class MonQueue(object):
     ):
         """Constructor
 
-        supprt two mode:
+        support two mode:
             * one coll one queue
             * one coll multi queue
         """
@@ -33,8 +33,8 @@ class MonQueue(object):
         self.__multi_queue_in_one_coll = multi_queue_in_one_coll
 
         self.__conn = pymongo.MongoClient(host=host, port=port)
-        self.__db = pymongo.database.Database(self.__conn, db_name)
-        self.__coll = pymongo.collection.Collection(self.__db, coll_name)
+        self.__db = self.__conn[db_name]
+        self.__coll = self.__db[coll_name]
 
         if self.__multi_queue_in_one_coll:
             self.__query = {QUEUE_LABEL_NAME: self.name}
@@ -131,7 +131,8 @@ class MonQueue(object):
                 ext_info['timestamp'] = doc['_id'].generation_time
 
             if mongo_id_str:
-                ext_info['mongo_id_str'] = str(bson.objectid.ObjectId(doc['_id'].binary))
+                ext_info['mongo_id_str'] = str(doc['_id'])
+                pass
 
         return msg, ext_info
 
