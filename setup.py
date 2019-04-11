@@ -2,25 +2,20 @@
 # coding=utf-8
 
 
-from os import path
+# Always prefer setuptools over distutils
 from setuptools import setup
 
+# To use a consistent encoding
+from codecs import open
+from os import path
+
+import monqueue as module
 
 here = path.abspath(path.dirname(__file__))
 
-
-def get_long_description():
-    # Get the long description from the relevant file
-    with open(path.join(here, 'README.rst')) as f:
-        long_description = f.read()
-
-    return long_description
-
-
-def get_version():
-    import monqueue
-    return monqueue.__version__
-
+# Get the long description from the README file
+with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
+    long_description = f.read()
 
 setup(
     name='MonQueue',
@@ -28,17 +23,17 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version=get_version(),
+    version=module.__version__,
 
-    description='MonQueue is a Python library that allows you to use MongoDB as a message queue.',
-    long_description=get_long_description(),
+    description=module.__description__,
+    long_description=long_description,
 
     # The project's main homepage.
-    url='https://github.com/rexzhang/monqueue',
+    url=module.__project_url__,
 
     # Author details
-    author='Rex Zhang',
-    author_email='rex.zhang@gmail.com',
+    author=module.__author__,
+    author_email=module.__author_email__,
 
     # Choose your license
     license='LGPL',
@@ -71,7 +66,7 @@ setup(
     ],
 
     # What does your project relate to?
-    keywords='queue mongodb',
+    keywords='mongodb message-queue',
 
     # List run-time dependencies here.  These will be installed by pip when your
     # project is installed. For an analysis of "install_requires" vs pip's
@@ -80,4 +75,17 @@ setup(
     install_requires=['pymongo'],
 
     py_modules=['monqueue'],
+
+    # List additional URLs that are relevant to your project as a dict.
+    #
+    # This field corresponds to the "Project-URL" metadata fields:
+    # https://packaging.python.org/specifications/core-metadata/#project-url-multiple-use
+    #
+    # Examples listed include a pattern for specifying where the package tracks
+    # issues, where the source is hosted, where to say thanks to the package
+    # maintainers, and where to support the project financially. The key is
+    # what's used to render the link text on PyPI.
+    project_urls={  # Optional
+        'Source': module.__source_url__,
+    },
 )

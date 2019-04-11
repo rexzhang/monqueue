@@ -6,9 +6,15 @@ import time
 
 import pymongo
 
-
 __version__ = "0.3.2"
 
+__author__ = 'Rex Zhang'
+__author_email__ = 'rex.zhang@gmail.com'
+__licence__ = 'LGPL'
+
+__description__ = 'MonQueue is a Python library that allows you to use MongoDB as a message queue.'
+__project_url__ = 'http://rexzhang.github.io/monqueue'
+__source_url__ = 'https://github.com/rexzhang/monqueue'
 
 QUEUE_LABEL_NAME = 'q'
 QUEUE_LABEL_QMSG = 'm'
@@ -18,7 +24,7 @@ class MonQueue(object):
     """MonQueue is a Python library that allows you to use MongoDB as a message queue"""
 
     def __init__(
-            self, name, host='localhost', port=27017, db_name='monqueue', coll_name=None, multi_queue_in_one_coll=False
+        self, name, host='localhost', port=27017, db_name='monqueue', coll_name=None, multi_queue_in_one_coll=False
     ):
         """Constructor
 
@@ -142,9 +148,9 @@ class MonQueue(object):
         :rtype: int
         """
         if self.__multi_queue_in_one_coll:
-            size = self.__coll.find({QUEUE_LABEL_NAME: self.name}).count()
+            size = self.__coll.count_documents({QUEUE_LABEL_NAME: self.name})
         else:
-            size = self.__coll.count()
+            size = self.__coll.count_documents({})
 
         return size
 
