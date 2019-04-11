@@ -1,8 +1,22 @@
-========
-MonQueue
-========
+===========
+Quick Start
+===========
 
-MonQueue is a Python library that allows you to use MongoDB as a (FIFO)message queue. Using MonQueue looks a little bit like this…
+Using MonQueue looks a little bit like this…
+
+
+Installation
+============
+
+To install it, just run:
+
+.. code-block:: console
+
+    pip install -U monqueue
+
+
+Usage
+=====
 
 Create a queue:
 
@@ -44,31 +58,3 @@ Clear the queue:
     >>> queue.clear()
     >>> queue.empty()
     True
-
-
-Installation
-============
-
-To install it, just run:
-
-.. code-block:: console
-
-    pip install -U monqueue
-
-
-Documentation
-=============
-
-.. toctree::
-    :maxdepth: 2
-
-    apireference
-    changelog
-
-
-Requirements
-============
-
-- Python (tested on version 2.7.8)
-- `MongoDB <http://www.mongodb.org/>`_
-- `pymongo <https://pypi.python.org/pypi/pymongo/>`_

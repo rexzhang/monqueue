@@ -1,138 +1,100 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>API Reference &mdash; MonQueue 0.2 documentation</title>
-    
-    <link rel="stylesheet" href="_static/flasky.css" type="text/css" />
+    <meta charset="utf-8" />
+    <title>API Reference &#8212; MonQueue 0.3.2 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="MonQueue 0.2 documentation" href="index.html" />
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Changelog" href="changelog.html" />
     <link rel="prev" title="MonQueue" href="index.html" />
    
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
-  <link media="only screen and (max-device-width: 480px)" href="_static/small_flask.css" type= "text/css" rel="stylesheet" />
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="changelog.html" title="Changelog"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="MonQueue"
-             accesskey="P">previous</a> |</li>
-        <li><a href="index.html">MonQueue 0.2 documentation</a> &raquo;</li> 
-      </ul>
-    </div>  
+  </head><body>
+  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          
+
+          <div class="body" role="main">
             
   <div class="section" id="module-monqueue">
 <span id="api-reference"></span><h1>API Reference<a class="headerlink" href="#module-monqueue" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="monqueue.MonQueue">
-<em class="property">class </em><tt class="descclassname">monqueue.</tt><tt class="descname">MonQueue</tt><big>(</big><em>name</em>, <em>host='localhost'</em>, <em>port=27017</em>, <em>db_name='monqueue'</em>, <em>coll_name=None</em>, <em>multi_queue_in_one_coll=False</em><big>)</big><a class="headerlink" href="#monqueue.MonQueue" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">monqueue.</code><code class="descname">MonQueue</code><span class="sig-paren">(</span><em>name</em>, <em>host='localhost'</em>, <em>port=27017</em>, <em>db_name='monqueue'</em>, <em>coll_name=None</em>, <em>multi_queue_in_one_coll=False</em><span class="sig-paren">)</span><a class="headerlink" href="#monqueue.MonQueue" title="Permalink to this definition">¶</a></dt>
 <dd><p>MonQueue is a Python library that allows you to use MongoDB as a message queue</p>
 <dl class="method">
 <dt id="monqueue.MonQueue.clear">
-<tt class="descname">clear</tt><big>(</big><big>)</big><a class="headerlink" href="#monqueue.MonQueue.clear" title="Permalink to this definition">¶</a></dt>
+<code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#monqueue.MonQueue.clear" title="Permalink to this definition">¶</a></dt>
 <dd><p>clear the queue</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="monqueue.MonQueue.empty">
-<tt class="descname">empty</tt><a class="headerlink" href="#monqueue.MonQueue.empty" title="Permalink to this definition">¶</a></dt>
+<code class="descname">empty</code><a class="headerlink" href="#monqueue.MonQueue.empty" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check the queue, return True if the queue empty.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">True or False</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>True or False</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="monqueue.MonQueue.get">
-<tt class="descname">get</tt><big>(</big><em>block=True</em>, <em>timeout=None</em><big>)</big><a class="headerlink" href="#monqueue.MonQueue.get" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get</code><span class="sig-paren">(</span><em>block=True</em>, <em>timeout=None</em><span class="sig-paren">)</span><a class="headerlink" href="#monqueue.MonQueue.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get one message from queue and remove it.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>block</strong> &#8211; blocking mode</li>
-<li><strong>timeout</strong> &#8211; depend block mode</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>block</strong> – blocking mode</p></li>
+<li><p><strong>timeout</strong> – depend block mode</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 <span class="go">u&#39;it is a message&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 <span class="go">{u&#39;city&#39;: u&#39;Chengdu&#39;, u&#39;name&#39;: u&#39;Rex Zhang&#39;, u&#39;country&#39;: u&#39;China&#39;}</span>
 </pre></div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">TODO:</th><td class="field-body">raise Empty</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">TODO</dt>
+<dd class="field-odd"><p>raise Empty</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="monqueue.MonQueue.peek">
-<tt class="descname">peek</tt><big>(</big><em>timestamp=False</em>, <em>mongo_id_str=False</em><big>)</big><a class="headerlink" href="#monqueue.MonQueue.peek" title="Permalink to this definition">¶</a></dt>
+<code class="descname">peek</code><span class="sig-paren">(</span><em>timestamp=False</em>, <em>mongo_id_str=False</em><span class="sig-paren">)</span><a class="headerlink" href="#monqueue.MonQueue.peek" title="Permalink to this definition">¶</a></dt>
 <dd><p>Peek oldest message info. just peek, no pop.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict object</td>
-</tr>
-</tbody>
-</table>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">&#39;queue msg&#39;</span><span class="p">)</span>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(message object, dict object)</p>
+</dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s1">&#39;queue msg&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="o">.</span><span class="n">peek</span><span class="p">()</span>
 <span class="go">(&#39;queue msg&#39;, {})</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="o">.</span><span class="n">peek</span><span class="p">(</span><span class="n">timestamp</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="o">.</span><span class="n">peek</span><span class="p">(</span><span class="n">timestamp</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="go">(&#39;queue msg&#39;, {&#39;timestamp&#39;: datetime.datetime(2015, 2, 4, 5, 58, 37, tzinfo=&lt;bson.tz_util.FixedOffset object at 0x101389d90&gt;)})</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="o">.</span><span class="n">peek</span><span class="p">(</span><span class="n">mongo_id_str</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="o">.</span><span class="n">peek</span><span class="p">(</span><span class="n">mongo_id_str</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="go">(&#39;queue msg&#39;, {&#39;mongo_id_str&#39;: &#39;54d1b50ddd7215c3b15ed992&#39;})</span>
 </pre></div>
 </div>
@@ -140,10 +102,10 @@
 
 <dl class="method">
 <dt id="monqueue.MonQueue.put">
-<tt class="descname">put</tt><big>(</big><em>msg</em><big>)</big><a class="headerlink" href="#monqueue.MonQueue.put" title="Permalink to this definition">¶</a></dt>
+<code class="descname">put</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="headerlink" href="#monqueue.MonQueue.put" title="Permalink to this definition">¶</a></dt>
 <dd><p>Put one message into queue. Example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">&#39;it is a message&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">({</span><span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;Rex Zhang&#39;</span><span class="p">,</span> <span class="s">&#39;city&#39;</span><span class="p">:</span> <span class="s">&#39;Chengdu&#39;</span><span class="p">,</span> <span class="s">&#39;country&#39;</span><span class="p">:</span> <span class="s">&#39;China&#39;</span><span class="p">})</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s1">&#39;it is a message&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Rex Zhang&#39;</span><span class="p">,</span> <span class="s1">&#39;city&#39;</span><span class="p">:</span> <span class="s1">&#39;Chengdu&#39;</span><span class="p">,</span> <span class="s1">&#39;country&#39;</span><span class="p">:</span> <span class="s1">&#39;China&#39;</span><span class="p">})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -151,16 +113,13 @@
 
 <dl class="method">
 <dt id="monqueue.MonQueue.qsize">
-<tt class="descname">qsize</tt><big>(</big><big>)</big><a class="headerlink" href="#monqueue.MonQueue.qsize" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the queue&#8217;s size.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
+<code class="descname">qsize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#monqueue.MonQueue.qsize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the queue’s size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -169,40 +128,72 @@
 
 
           </div>
+          
         </div>
       </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">MonQueue</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="index.html" title="previous chapter">MonQueue</a></li>
       <li>Next: <a href="changelog.html" title="next chapter">Changelog</a></li>
   </ul></li>
 </ul>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/apireference.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+</div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy; Copyright 2015, Rex Zhang.
+      &copy;2019, Rex Zhang.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/apireference.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
+
+    
+
+    
   </body>
 </html>
