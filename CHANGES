@@ -1,5 +1,12 @@
+=========
 Changelog
 =========
+
+
+Version 0.3.2
+-------------
+- Update to be compatible with PyMongo 3.6.1
+- pep8
 
 Version 0.3
 -----------
