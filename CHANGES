@@ -3,6 +3,10 @@ Changelog
 =========
 
 
+Version 0.3.3
+-------------
+- Update to be compatible with PyMongo 3.7.2
+
 Version 0.3.2
 -------------
 - Update to be compatible with PyMongo 3.6.1

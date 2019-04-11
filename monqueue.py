@@ -6,7 +6,7 @@ import time
 
 import pymongo
 
-__version__ = "0.3.2"
+__version__ = "0.3.3"
 
 __author__ = 'Rex Zhang'
 __author_email__ = 'rex.zhang@gmail.com'
