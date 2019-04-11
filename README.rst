@@ -28,7 +28,7 @@ Coverage Report
 
 .. code-block:: console
 
-    python -m pytest --cov=. --cov-report html
+    py.test --cov=. --cov-report html
 
 Contributing
 ============
