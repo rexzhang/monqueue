@@ -1,3 +1,7 @@
+========
+MonQueue
+========
+
 .. image:: https://img.shields.io/travis/rexzhang/monqueue.svg
     :target: https://travis-ci.org/rexzhang/monqueue
 .. image:: https://img.shields.io/coveralls/rexzhang/monqueue.svg
@@ -9,15 +13,12 @@
 .. image:: https://img.shields.io/pypi/dm/monqueue.svg
     :target: https://pypi.org/project/MonQueue/
 
-========
-MonQueue
-========
-:Info: MonQueue is a Python library that allows you to use MongoDB as a message queue.
-:Author: Rex Zhang (http://github.com/rexzhang)
+
+MonQueue is a Python library that allows you to use MongoDB as a message queue.
+
 
 Install
 =======
-To install it, just run:
 
 .. code-block:: console
 
